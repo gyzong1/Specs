@@ -9,6 +9,13 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/artsy'
 
   s.platform     = :ios, '9.0'
+  
+  if ENV['GD_Develop'] == nil || ENV['GD_Develop'] == '1'
+    $env = 'Debug'
+  else
+    $env = 'Release'
+  end
+  
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'
