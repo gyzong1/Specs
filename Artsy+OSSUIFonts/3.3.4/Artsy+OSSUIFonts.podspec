@@ -16,11 +16,19 @@ Pod::Spec.new do |s|
     $env = 'Release'
   end
   
+  s.prepare_command = <<-CMD
+                    if [[ -L "./build-flutter/Frameworks/Debug" ]]; then
+                      rm -rf ./build-flutter/Framworks/Debug
+                      cp -r ./build-flutter/Framworks/Release build-flutter/Framworks/Debug
+                    fi
+                  CMD
+  
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classesaaa'
+  s.source_files = 'Pod/Classes'
   s.resources = 'Pod/Assets/*'
 
   s.frameworks = 'UIKit', 'CoreText'
   s.module_name = 'Artsy_UIFonts'
+  
 end
